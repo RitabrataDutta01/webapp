@@ -70,8 +70,7 @@ def word2pdf():
             pdf.output(output_pdf_path)
 
             if os.path.exists(output_pdf_path):
-                return send_file(output_pdf_path, as_attachment=True, attachment_filename=output_pdf_filename)
-
+                return send_file(output_pdf_path, as_attachment=True, download_name=output_pdf_filename)
     return render_template('word2pdf.html')
 
 @app.route('/ppt2pdf', methods=['GET', 'POST'])
@@ -112,7 +111,7 @@ def ppt2pdf():
             pdf.output(output_pdf_path)
 
             if os.path.exists(output_pdf_path):
-                return send_file(output_pdf_path, as_attachment=True, attachment_filename=output_pdf_filename)
+                return send_file(output_pdf_path, as_attachment=True, download_name=output_pdf_filename)
 
     return render_template('PPT2PDF.html')
 
@@ -143,7 +142,7 @@ def img2pdf():
         output_pdf_path = os.path.join(get_output_folder(), 'merged_images.pdf')
         convert_images_to_pdf(file_paths, output_pdf_path)
         if os.path.exists(output_pdf_path):
-            return send_file(output_pdf_path, as_attachment=True, attachment_filename='merged_images.pdf')
+            return send_file(output_pdf_path, as_attachment=True, download_name=output_pdf_filename)
 
     return render_template('img2pdf.html')
 
@@ -187,7 +186,7 @@ def pdfmerge():
         merger.close()
 
         if os.path.exists(output_pdf_path):
-            return send_file(output_pdf_path, as_attachment=True, attachment_filename='merged.pdf')
+            return send_file(output_pdf_path, as_attachment=True, download_name=output_pdf_filename)
 
     return render_template('pdfmerge.html')
 
@@ -248,7 +247,7 @@ def excel2pdf():
             pdf.output(output_pdf_path)
 
             if os.path.exists(output_pdf_path):
-                return send_file(output_pdf_path, as_attachment=True, attachment_filename=output_pdf_filename)
+                return send_file(output_pdf_path, as_attachment=True, download_name=output_pdf_filename)
 
     return render_template('excel2pdf.html')
 
