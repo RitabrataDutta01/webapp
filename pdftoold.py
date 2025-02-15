@@ -8,7 +8,7 @@ import openpyxl
 app = Flask(__name__)
 
 def get_base_folder():
-    if getattr(sys, 'frozen', False):  # For bundled app
+    if getattr(sys, 'frozen', False):
         return os.path.dirname(sys.executable)  
     else:
         return os.getcwd()
@@ -25,13 +25,11 @@ def get_upload_folder():
     os.makedirs(upload_folder, exist_ok=True)
     return upload_folder
 
-
 AllowedExtensionWord = ['docx']
 AllowedExtensionPpt = ['pptx']
 AllowedExtensionImg = ['jpg', 'jpeg', 'png']
 AllowedExtensionPdf = ['pdf']
 AllowedExtensionExcel = ['xlsx', 'xls']
-
 
 app.config['UPLOAD_FOLDER'] = get_upload_folder()
 app.config['OUTPUT_FOLDER'] = get_output_folder()
@@ -50,7 +48,6 @@ def word2pdf():
             return redirect(request.url)
 
         file = request.files['file']
-
         if file.filename == '':
             return redirect(request.url)
 
@@ -68,12 +65,14 @@ def word2pdf():
                 for line in para.text.splitlines():
                     pdf.cell(200, 10, txt=line, ln=True, align='L')
 
-            output_pdf_path = os.path.join(app.config['OUTPUT_FOLDER'], filename.rsplit('.', 1)[0] + '.pdf')
+            output_pdf_filename = filename.rsplit('.', 1)[0] + '.pdf'
+            output_pdf_path = os.path.join(app.config['OUTPUT_FOLDER'], output_pdf_filename)
             pdf.output(output_pdf_path)
 
-            return send_file(output_pdf_path, as_attachment=True)
-    return render_template('word2pdf.html')
+            if os.path.exists(output_pdf_path):
+                return send_file(output_pdf_path, as_attachment=True, attachment_filename=output_pdf_filename)
 
+    return render_template('word2pdf.html')
 
 @app.route('/ppt2pdf', methods=['GET', 'POST'])
 def ppt2pdf():
@@ -82,7 +81,6 @@ def ppt2pdf():
             return redirect(request.url)
 
         file = request.files['file']
-
         if file.filename == '':
             return redirect(request.url)
 
@@ -109,10 +107,13 @@ def ppt2pdf():
 
                 pdf.ln(10)
 
-            output_pdf_path = os.path.join(app.config['OUTPUT_FOLDER'], filename.rsplit('.', 1)[0] + '.pdf')
+            output_pdf_filename = filename.rsplit('.', 1)[0] + '.pdf'
+            output_pdf_path = os.path.join(app.config['OUTPUT_FOLDER'], output_pdf_filename)
             pdf.output(output_pdf_path)
 
-            return send_file(output_pdf_path, as_attachment=True)
+            if os.path.exists(output_pdf_path):
+                return send_file(output_pdf_path, as_attachment=True, attachment_filename=output_pdf_filename)
+
     return render_template('PPT2PDF.html')
 
 @app.route('/img2pdf', methods=['GET', 'POST'])
@@ -122,7 +123,6 @@ def img2pdf():
             return redirect(request.url)
 
         files = request.files.getlist('files')
-
         if len(files) == 0:
             return redirect(request.url)
 
@@ -142,9 +142,10 @@ def img2pdf():
 
         output_pdf_path = os.path.join(get_output_folder(), 'merged_images.pdf')
         convert_images_to_pdf(file_paths, output_pdf_path)
-        return send_file(output_pdf_path, as_attachment=True)
-    return render_template('img2pdf.html')
+        if os.path.exists(output_pdf_path):
+            return send_file(output_pdf_path, as_attachment=True, attachment_filename='merged_images.pdf')
 
+    return render_template('img2pdf.html')
 
 def convert_images_to_pdf(image_paths, output_pdf_path):
     pdf = FPDF()
@@ -160,7 +161,6 @@ def pdfmerge():
             return redirect(request.url)
 
         files = request.files.getlist('files')
-
         if len(files) == 0:
             return redirect(request.url)
 
@@ -186,7 +186,8 @@ def pdfmerge():
         merger.write(output_pdf_path)
         merger.close()
 
-        return send_file(output_pdf_path, as_attachment=True)
+        if os.path.exists(output_pdf_path):
+            return send_file(output_pdf_path, as_attachment=True, attachment_filename='merged.pdf')
 
     return render_template('pdfmerge.html')
 
@@ -197,7 +198,6 @@ def excel2pdf():
             return redirect(request.url)
 
         file = request.files['file']
-
         if file.filename == '':
             return redirect(request.url)
 
@@ -214,7 +214,6 @@ def excel2pdf():
             pdf.set_font("Arial", size=12)
 
             col_widths = []
-
             for col_index in range(sheet.max_column):
                 max_length = 0
                 for row in sheet.iter_rows(min_col=col_index + 1, max_col=col_index + 1):
@@ -223,7 +222,6 @@ def excel2pdf():
 
                 col_widths.append(max_length * 2)
 
- 
             total_width = sum(col_widths)
             page_width = 210 
             margin = 10
@@ -245,12 +243,14 @@ def excel2pdf():
                 x_pos = margin
                 y_pos += 10
 
-            output_pdf_path = os.path.join(app.config['OUTPUT_FOLDER'], filename.rsplit('.', 1)[0] + '.pdf')
+            output_pdf_filename = filename.rsplit('.', 1)[0] + '.pdf'
+            output_pdf_path = os.path.join(app.config['OUTPUT_FOLDER'], output_pdf_filename)
             pdf.output(output_pdf_path)
 
-            return send_file(output_pdf_path, as_attachment=True)
-    return render_template('excel2pdf.html')
+            if os.path.exists(output_pdf_path):
+                return send_file(output_pdf_path, as_attachment=True, attachment_filename=output_pdf_filename)
 
+    return render_template('excel2pdf.html')
 
 @app.route('/aboutme', methods=['GET'])
 def aboutme():
