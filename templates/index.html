@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Operations | HOME</title>
+    <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+    <header>
+        <h1 align="center">
+            PDF Operations
+        </h1>
+    </header>
+    <br><br><br>
+    <nav>
+        <a href="{{url_for('aboutme')}}">About me</a>
+        <a href="{{url_for('word2pdf')}}">Word 2 PDF</a>
+        <a href="{{url_for('ppt2pdf')}}">Powerpoint 2 PDF</a>
+        <a href="#">Excel 2 PDF</a>
+        <a href="{{url_for('img2pdf')}}">Images 2 PDF</a>
+        <a href="#">PDF 2 Word</a>
+        <a href="#">PDF 2 Excel</a>
+        <a href="#">PDF 2 Powerpoint</a>
+        <a href="#">PDF 2 Images</a>
+        <a href="{{url_for('pdfmerge')}}">PDF Merge</a>
+    </nav>
+    <br><br><br>
+    <main>
+        <section>
+            <table class="button-table">
+                <tr>
+                    <td>
+                        <button class="word2pdf" onclick="window.location.href='{{ url_for('word2pdf') }}'">Word 2 PDF</button>
+                    </td>
+                    <td>
+                        <button class="ppt2pdf" onclick="window.location.href='{{ url_for('ppt2pdf') }}'">Powerpoint 2 PDF</button>
+                    </td>
+                    <td>
+                        <button class="excel2pdf" onclick="window.location.href='{{url_for('excel2pdf')}}'">Excel 2 PDF</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="img2pdf" onclick="window.location.href='{{ url_for('img2pdf') }}'">Images 2 PDF</button>
+                    </td>
+                    <td>
+                        <button class="pdf2word" onclick="window.location.href='#'">PDF 2 Word</button>
+                    </td>
+                    <td>
+                        <button class="pdf2excel" onclick="window.location.href='#'">PDF 2 Excel</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="pdf2ppt" onclick="window.location.href='#'">PDF 2 Powerpoint</button>
+                    </td>
+                    <td>
+                        <button class="pdf2img" onclick="window.location.href='#'">PDF 2 Images</button>
+                    </td>
+                    <td>
+                        <button class="pdfmerge" onclick="window.location.href='{{ url_for('pdfmerge') }}'">PDF Merge</button>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <br><br><br>
+        <section>
+            <p align="center">
+                A simple PDF operations app to convert your PDF files to word documents, excel spreadsheets, powerpoint presentations and vice versa, even though PDF is the superior file type. This is a simple tool created for the users by a dumb student as a project. Thanks for reading this much and have a great day ahead. BTW here is my <a href="https://github.com/RitabrataDutta01?tab=repositories" target="_blank">github</a> and here is my <a href="https://www.linkedin.com/in/ritabrata-dutta-0a0077320/" target="_blank">linkedin</a>. Thanks and have a good day (for this time).
+            </p>
+        </section>
+    </main>
+    <footer>
+        <nav>
+            <a href="{{url_for('aboutme')}}">About me</a>
+        </nav>
+    </footer>
+</body>
+</html>

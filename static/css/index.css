@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 0;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 36px;
+}
+
+nav {
+    background-color: #333;
+    padding: 15px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    margin: 0 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #575757;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+main section {
+    margin-bottom: 40px;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
+    margin-bottom: 40px;
+}
+
+table td {
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+table td:hover {
+    background-color: #e4e4e4;
+}
+
+table tr td {
+    cursor: pointer;
+}
+
+section p {
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: center;
+    color: #555;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #e7f7e7;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+section p a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section p a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+footer {
+    margin-top: 50px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+footer a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    height: 100%;
+    text-transform: uppercase;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); }
+    50% { box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6); }
+    100% { box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); }
+}
+
+button.word2pdf {
+    background: linear-gradient(to right, #1d4ed8, #2563eb); /* Blue for Word */
+    color: white;
+}
+
+button.word2pdf:hover {
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(30, 58, 138, 0.6);
+}
+
+button.ppt2pdf {
+    background: linear-gradient(to right, #9333ea, #7e22ce); /* Purple for PowerPoint */
+    color: white;
+}
+
+button.ppt2pdf:hover {
+    background: linear-gradient(to right, #7e22ce, #9333ea);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(138, 63, 255, 0.6);
+}
+
+button.excel2pdf {
+    background: linear-gradient(to right, #34d399, #10b981); /* Green for Excel */
+    color: white;
+}
+
+button.excel2pdf:hover {
+    background: linear-gradient(to right, #10b981, #34d399);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(10, 182, 128, 0.6);
+}
+
+button.img2pdf {
+    background: linear-gradient(to right, #059669, #16a34a); /* Green for Images */
+    color: white;
+}
+
+button.img2pdf:hover {
+    background: linear-gradient(to right, #16a34a, #059669);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(23, 150, 121, 0.6);
+}
+
+button.ppt2pdf {
+    background: linear-gradient(to right, #b91c1c, #991b1b); /* Red for PowerPoint to PDF */
+    color: white;
+}
+
+button.ppt2pdf:hover {
+    background: linear-gradient(to right, #991b1b, #b91c1c);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(191, 28, 28, 0.6);
+}
+
+button.pdf2ppt {
+    background: linear-gradient(to right, #b91c1c, #991b1b); /* Red for PDF to PowerPoint */
+    color: white;
+}
+
+button.pdf2ppt:hover {
+    background: linear-gradient(to right, #991b1b, #b91c1c);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(191, 28, 28, 0.6);
+}
+
+button.pdfmerge {
+    background: linear-gradient(to right, #6c7b8b, #5a6b77); /* Greyish blue for PDF Merge */
+    color: white;
+}
+
+button.pdfmerge:hover {
+    background: linear-gradient(to right, #5a6b77, #6c7b8b);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(72, 92, 108, 0.6);
+}
+
+button.pdf2word {
+    background: linear-gradient(to right, #f59e0b, #d97706); /* Yellow for PDF to Word */
+    color: white;
+}
+
+button.pdf2word:hover {
+    background: linear-gradient(to right, #d97706, #f59e0b);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(255, 159, 11, 0.6);
+}
+
+button.pdf2excel {
+    background: linear-gradient(to right, #34d399, #10b981); /* Green for PDF to Excel */
+    color: white;
+}
+
+button.pdf2excel:hover {
+    background: linear-gradient(to right, #10b981, #34d399);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(10, 182, 128, 0.6);
+}
+
+
+button.pdf2img {
+    background: linear-gradient(to right, #f59e0b, #d97706); /* Yellow for PDF to Images */
+    color: white;
+}
+
+button.pdf2img:hover {
+    background: linear-gradient(to right, #d97706, #f59e0b);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(255, 159, 11, 0.6);
+}
