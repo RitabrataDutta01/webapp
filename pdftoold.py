@@ -257,4 +257,4 @@ def aboutme():
     return render_template('aboutme.html')
 
 def run_flask_app():
-    app.run(debug=False, use_reloader=False, host = '0.0.0.0', port = 5000)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
