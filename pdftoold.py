@@ -68,7 +68,9 @@ def word2pdf():
             output_pdf_filename = filename.rsplit('.', 1)[0] + '.pdf'
             output_pdf_path = os.path.join(app.config['OUTPUT_FOLDER'], output_pdf_filename)
             pdf.output(output_pdf_path)
-
+            if os.path.exists(filepath):
+                os.remove(filepath)
+                
             if os.path.exists(output_pdf_path):
                 return send_file(output_pdf_path, as_attachment=True, download_name=output_pdf_filename)
     return render_template('word2pdf.html')
@@ -109,7 +111,9 @@ def ppt2pdf():
             output_pdf_filename = filename.rsplit('.', 1)[0] + '.pdf'
             output_pdf_path = os.path.join(app.config['OUTPUT_FOLDER'], output_pdf_filename)
             pdf.output(output_pdf_path)
-
+            if os.path.exists(filepath):
+                os.remove(filepath)
+                
             if os.path.exists(output_pdf_path):
                 return send_file(output_pdf_path, as_attachment=True, download_name=output_pdf_filename)
 
@@ -141,6 +145,10 @@ def img2pdf():
 
         output_pdf_path = os.path.join(get_output_folder(), 'merged_images.pdf')
         convert_images_to_pdf(file_paths, output_pdf_path)
+
+        if os.path.exists(filepath):
+                os.remove(filepath)
+        
         if os.path.exists(output_pdf_path):
             return send_file(output_pdf_path, as_attachment=True, download_name=output_pdf_filename)
 
@@ -184,6 +192,9 @@ def pdfmerge():
         output_pdf_path = os.path.join(app.config['OUTPUT_FOLDER'], 'merged.pdf')
         merger.write(output_pdf_path)
         merger.close()
+
+        if os.path.exists(filepath):
+                os.remove(filepath)
 
         if os.path.exists(output_pdf_path):
             return send_file(output_pdf_path, as_attachment=True, download_name=output_pdf_filename)
@@ -246,6 +257,9 @@ def excel2pdf():
             output_pdf_path = os.path.join(app.config['OUTPUT_FOLDER'], output_pdf_filename)
             pdf.output(output_pdf_path)
 
+            if os.path.exists(filepath):
+                os.remove(filepath)
+            
             if os.path.exists(output_pdf_path):
                 return send_file(output_pdf_path, as_attachment=True, download_name=output_pdf_filename)
 
