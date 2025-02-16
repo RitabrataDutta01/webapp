@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word to PDF Converter</title>
-    <link rel = "stylesheet" href = "../static/css/Word2PDF.css">
+    <link rel="stylesheet" href="../static/css/Word2PDF.css">
+    
+    <!-- Optional: Include some basic font and icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>
-            Convert Word to PDF
-        </h1>
+        <h1>Convert Word to PDF</h1>
     </header>
+
     <div class="header-nav-gap"></div>
     <nav>
         <a href="{{url_for('index')}}">Home</a>
@@ -25,15 +28,82 @@
         <a href="#">PDF 2 Images</a>
         <a href="{{url_for('pdfmerge')}}">PDF Merge</a>
     </nav>
+
     <main>
-        <form action="/word2pdf" method="POST" enctype="multipart/form-data">
-            <label for="file">Choose a Word document (.docx):</label>
-            <input type="file" name="file" id="file" accept=".docx" required>
-        
-            <br><br>
-        
-            <button type="submit">Convert to PDF</button>
-        </form>
+        <div class="converter-container">
+            <h2>Select a Word file to convert</h2>
+
+            <!-- Display success or failure message here -->
+            <div id="message-container">
+                <!-- Success or failure message will appear here -->
+            </div>
+
+            <!-- Drag and Drop area -->
+            <div class="upload-box" id="upload-box">
+                <p>Drag & Drop your Word file here or click to browse.</p>
+                <input type="file" name="file" id="file" accept=".docx" class="upload-input" required>
+            </div>
+
+            <div id="loading-container" style="display: none;">
+                <p>Converting...</p>
+                <div class="progress-bar">
+                    <div id="progress" class="progress"></div>
+                </div>
+            </div>
+
+            <button type="submit" id="submit-button">Convert to PDF</button>
+        </div>
     </main>
+
+    <script>
+        // Handle file input and drag & drop interaction
+        const uploadBox = document.getElementById('upload-box');
+        const fileInput = document.getElementById('file');
+        const submitButton = document.getElementById('submit-button');
+        const messageContainer = document.getElementById('message-container');
+        const loadingContainer = document.getElementById('loading-container');
+        const progress = document.getElementById('progress');
+
+        // Drag & drop event listeners
+        uploadBox.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadBox.classList.add('drag-over');
+        });
+
+        uploadBox.addEventListener('dragleave', () => {
+            uploadBox.classList.remove('drag-over');
+        });
+
+        uploadBox.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadBox.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            fileInput.files = e.dataTransfer.files;
+        });
+
+        // Submit button click handler
+        submitButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Show loading screen
+            loadingContainer.style.display = 'block';
+            progress.style.width = '0%';
+
+            // Simulate file upload progress (mockup)
+            let progressWidth = 0;
+            const interval = setInterval(() => {
+                progressWidth += 5;
+                progress.style.width = `${progressWidth}%`;
+
+                if (progressWidth >= 100) {
+                    clearInterval(interval);
+                    // Mock success message after progress
+                    setTimeout(() => {
+                        messageContainer.innerHTML = `<p class="success">Conversion Successful! <a href="#">Download PDF</a></p>`;
+                        loadingContainer.style.display = 'none';
+                    }, 500);
+                }
+            }, 300);  // Update every 300ms
+        });
+    </script>
 </body>
 </html>
