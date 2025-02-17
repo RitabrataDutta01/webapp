@@ -14,16 +14,16 @@
     </header>
     <div class="header-nav-gap"></div>
     <nav>
-        <a href="templates/PPT2PDF.html">Home</a>
-        <a href="templates/aboutme.html">About Me</a>
-        <a href="templates/Word2PDF.html">Word 2 PDF</a>
-        <a href="#">Excel 2 PDF</a>
-        <a href="#">Images 2 PDF</a>
+        <a href="{{url_for('index')}}">Home</a>
+        <a href="{{url_for('aboutme')}}">About Me</a>
+        <a href="{{url_for('word2pdf')}}">Word 2 PDF</a>
+        <a href="{{url_for('excel2pdf')}}">Excel 2 PDF</a>
+        <a href="{{url_for('img2pdf')}}">Images 2 PDF</a>
         <a href="#">PDF 2 Word</a>
         <a href="#">PDF 2 Excel</a>
         <a href="#">PDF 2 Powerpoint</a>
         <a href="#">PDF 2 Images</a>
-        <a href="#">PDF Merge</a>
+        <a href="{{url_for('pdfmerge')}}">PDF Merge</a>
     </nav>
     <main>
         <form action="/ppt2pdf" method="POST" enctype="multipart/form-data">
