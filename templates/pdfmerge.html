@@ -12,16 +12,16 @@
     </header>
     <div class="header-nav-gap"></div>
     <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Word to PDF</a>
-        <a href="#">Excel to PDF</a>
-        <a href="#">Images to PDF</a>
+        <a href="{{url_for('index')}}">Home</a>
+        <a href="{{url_for('aboutme')}}">About</a>
+        <a href="{{url_for('word2pdf')}}">Word to PDF</a>
+        <a href="{{url_for('excel2pdf')}}">Excel to PDF</a>
+        <a href="{{url_for('img2pdf')}}">Images to PDF</a>
         <a href="#">PDF to Word</a>
         <a href="#">PDF to Excel</a>
         <a href="#">PDF to PowerPoint</a>
         <a href="#">PDF to Images</a>
-        <a href="#">PDF Merge</a>
+        <a href="{{url_for('PPT2PDF')}}">PPT to Excel</a>
     </nav>
     <main>
         <form action="/pdfmerge" method="POST" enctype="multipart/form-data">
