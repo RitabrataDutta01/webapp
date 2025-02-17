@@ -12,9 +12,24 @@
             About me
         </h1>
     </header>
-    <p align = 'justified'>
-        Hello, My name is Ritabrata Dutta, and  I am a 20y/o 1st year B.Tech student at Adamas University, Barasat, West Bengal, India. My goal to create this app was to make a fully customizable gui for my pdf operation app which I made in python using tkinter but the lack of customizability led me to take a discord like approach and convert a webapp into a standalone desktop app. You can find the original app code on my github page, some of the reverse conversions are still work in progress and I will update it here as soon as I am done with the tkinter version. That's all thank you.
-    </p>
+    <div class="header-nav-gap"></div>
+    <nav>
+        <a href="{{url_for('index')}}">Home</a>
+        <a href="{{url_for('excel2pdf')}}">Excel 2 PDF</a>
+        <a href="{{url_for('ppt2pdf')}}">Powerpoint 2 PDF</a>
+        <a href="{{url_for('word2pdf')}}">Word 2 PDF</a>
+        <a href="{{url_for('img2pdf')}}">Images 2 PDF</a>
+        <a href="#">PDF 2 Word</a>
+        <a href="#">PDF 2 Excel</a>
+        <a href="#">PDF 2 Powerpoint</a>
+        <a href="#">PDF 2 Images</a>
+        <a href="{{url_for('pdfmerge')}}">PDF Merge</a>
+    </nav>
+    <main>
+        <p align = 'justified'>
+            Hello, My name is Ritabrata Dutta, and  I am a 20y/o 1st year B.Tech student at Adamas University, Barasat, West Bengal, India. My goal to create this app was to make a fully customizable gui for my pdf operation app which I made in python using tkinter but the lack of customizability led me to take a discord like approach and convert a webapp into a standalone desktop app. You can find the original app code on my github page, some of the reverse conversions are still work in progress and I will update it here as soon as I am done with the tkinter version. That's all thank you.
+        </p>
+    </main>
     <footer>
         <a href= "{{url_for('index')}}">Home</a>
     </footer>
