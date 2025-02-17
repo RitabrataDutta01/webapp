@@ -96,11 +96,34 @@
 
                 if (progressWidth >= 100) {
                     clearInterval(interval);
-                    // Mock success message after progress
-                    setTimeout(() => {
-                        messageContainer.innerHTML = `<p class="success">Conversion Successful! <a href="#">Download PDF</a></p>`;
+
+                    // Now handle the actual file upload
+                    const file = fileInput.files[0];
+                    const formData = new FormData();
+                    formData.append('file', file);
+
+                    fetch('/word2pdf', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Conversion failed.');
+                        }
+                        return response.blob(); // Get the PDF file as a Blob
+                    })
+                    .then(blob => {
+                        const downloadUrl = window.URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = downloadUrl;
+                        link.download = file.name.replace('.docx', '.pdf'); // Name the downloaded file
+                        link.click(); // Trigger the download
+                        loadingContainer.style.display = 'none'; // Hide the loading screen
+                    })
+                    .catch(error => {
+                        messageContainer.innerHTML = '<p class="error">An error occurred. Please try again.</p>';
                         loadingContainer.style.display = 'none';
-                    }, 500);
+                    });
                 }
             }, 300);  // Update every 300ms
         });
