@@ -139,16 +139,17 @@ def img2pdf():
                 filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 file.save(filepath)
                 file_paths.append(filepath)
-
             else:
                 return render_template('img2pdf.html', message='Invalid file format. Please upload image files.')
 
-        output_pdf_path = os.path.join(get_output_folder(), 'merged_images.pdf')
+        output_pdf_filename = 'merged_images.pdf'  
+        output_pdf_path = os.path.join(get_output_folder(), output_pdf_filename)
         convert_images_to_pdf(file_paths, output_pdf_path)
 
-        if os.path.exists(filepath):
+        for filepath in file_paths: 
+            if os.path.exists(filepath):
                 os.remove(filepath)
-        
+
         if os.path.exists(output_pdf_path):
             return send_file(output_pdf_path, as_attachment=True, download_name=output_pdf_filename)
 
